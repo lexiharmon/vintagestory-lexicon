@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo.png" alt="Lexicon logo" width="160"></p>
+
 # Lexicon
 
 A [Vintage Story](https://www.vintagestory.at/) client-side mod that improves the Survival Handbook search bar.

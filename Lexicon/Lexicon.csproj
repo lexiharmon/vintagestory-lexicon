@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <None Include="modinfo.json" />
+    <None Include="modicon.png" />
   </ItemGroup>
 
   <!-- Package a ready-to-install mod zip: bin\Lexicon_<version>.zip -->
@@ -37,7 +38,7 @@
     </PropertyGroup>
     <RemoveDir Directories="$(StageDir)" />
     <MakeDir Directories="$(StageDir)" />
-    <Copy SourceFiles="$(MSBuildProjectDirectory)\modinfo.json;$(MSBuildProjectDirectory)\bin\Lexicon.dll;$(MSBuildProjectDirectory)\bin\Lexicon.pdb" DestinationFolder="$(StageDir)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\modinfo.json;$(MSBuildProjectDirectory)\modicon.png;$(MSBuildProjectDirectory)\bin\Lexicon.dll;$(MSBuildProjectDirectory)\bin\Lexicon.pdb" DestinationFolder="$(StageDir)" />
     <Delete Files="$(ZipFile)" />
     <ZipDirectory SourceDirectory="$(StageDir)" DestinationFile="$(ZipFile)" />
     <Message Importance="high" Text="Packaged $(ZipFile)" />
