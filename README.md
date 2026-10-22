@@ -1,12 +1,14 @@
+<p align="center"><img src="assets/logo.png" alt="Lexicon logo" width="160"></p>
+
 # Lexicon
 
 A [Vintage Story](https://www.vintagestory.at/) client-side mod that improves the Survival Handbook search bar.
 
 Vanilla search shows every page whose title or description contains *any* typed word as a substring. Lexicon shows exact matches instead:
 
-- Words must match as **complete words**, case- and accent-insensitive ("iron" no longer finds "Ironwood" first, "axe" no longer finds "Pickaxe").
+- Words must match as **complete words**, case- and accent-insensitive ("axe" finds "Iron axe" but no longer "Iron pickaxe").
 - **Every** typed word must be present, in any order.
-- The **last word** you type may be a word prefix, so "iron sa" finds "Iron Saw" while you are still typing. Earlier words must be complete.
+- The **last word** you type may be a word prefix, so "iron sa" finds "Iron saw" while you are still typing. Earlier words must be complete.
 - Complete-word hits are listed before prefix hits. Result ordering otherwise matches vanilla.
 - Only titles are searched by default. The Command Handbook is untouched.
 
