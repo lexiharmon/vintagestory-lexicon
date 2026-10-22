@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>Lexicon</AssemblyName>
+    <RootNamespace>Lexicon</RootNamespace>
+    <Version>1.1.0</Version>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Set the VINTAGE_STORY environment variable to build against a game install elsewhere. -->
+    <VSPath Condition="'$(VINTAGE_STORY)' != ''">$(VINTAGE_STORY)</VSPath>
+    <VSPath Condition="'$(VSPath)' == ''">$(APPDATA)\Vintagestory</VSPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="VintagestoryAPI"><HintPath>$(VSPath)\VintagestoryAPI.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VSSurvivalMod"><HintPath>$(VSPath)\Mods\VSSurvivalMod.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(VSPath)\Lib\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Newtonsoft.Json"><HintPath>$(VSPath)\Lib\Newtonsoft.Json.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="modinfo.json" />
+  </ItemGroup>
+
+  <!-- Package a ready-to-install mod zip: bin\Lexicon_<version>.zip -->
+  <Target Name="PackageMod" AfterTargets="Build">
+    <PropertyGroup>
+      <StageDir>$(MSBuildProjectDirectory)\obj\package</StageDir>
+      <ZipFile>$(MSBuildProjectDirectory)\bin\Lexicon_$(Version).zip</ZipFile>
+    </PropertyGroup>
+    <RemoveDir Directories="$(StageDir)" />
+    <MakeDir Directories="$(StageDir)" />
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\modinfo.json;$(MSBuildProjectDirectory)\bin\Lexicon.dll;$(MSBuildProjectDirectory)\bin\Lexicon.pdb" DestinationFolder="$(StageDir)" />
+    <Delete Files="$(ZipFile)" />
+    <ZipDirectory SourceDirectory="$(StageDir)" DestinationFile="$(ZipFile)" />
+    <Message Importance="high" Text="Packaged $(ZipFile)" />
+  </Target>
+
+</Project>

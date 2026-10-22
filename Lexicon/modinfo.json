@@ -1,0 +1,14 @@
+{
+  "type": "code",
+  "modid": "lexicon",
+  "name": "Lexicon",
+  "authors": ["Lexi"],
+  "description": "Makes the Survival Handbook search bar show exact (whole-word) matches instead of every page containing a partial match.",
+  "version": "1.1.0",
+  "side": "Client",
+  "requiredOnClient": false,
+  "requiredOnServer": false,
+  "dependencies": {
+    "game": ""
+  }
+}
